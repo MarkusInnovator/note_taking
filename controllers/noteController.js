@@ -6,10 +6,14 @@ exports.getAllNotes = async (req, res) => {
 };
 
 exports.createNote = async (req, res) => {
-  const { title, content } = req.body;
-  const newNote = new Note({ title, content });
-  await newNote.save();
-  res.status(201).json(newNote);
+  try {
+    const { title, content } = req.body;
+    const note = new Note({ title, content });
+    await note.save();
+    res.status(201).json(note);
+  } catch (err) {
+    res.status(500).json({ error: 'Fehler beim Speichern der Notiz' });
+  }
 };
 
 // Die anderen Methoden wären ähnlich: getNoteById, updateNote, deleteNote

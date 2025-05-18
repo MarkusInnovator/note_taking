@@ -1,3 +1,4 @@
+require('./data_base/db');
 const express = require('express');
 const app = express();
 const noteRoutes = require('./routes/noteRoutes');
